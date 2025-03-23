@@ -1,0 +1,70 @@
+.select-audio {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .select-audio-container {
+    width: 90%;
+    height: 90%;
+    // background-color: #ccc;
+    padding: 0 20px;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+    border-radius: 10px;
+
+    .select-audio-tabs {
+      display: flex;
+
+      .tab {
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &.active {
+          // background-color: #e6f7ff;
+          border-bottom: 2px solid #007bff;
+          font-weight: bold;
+          color: #007bff;
+        }
+      }
+    }
+
+    .select-audio-content {
+      width: 100%;
+      height: 68%;
+      //   padding-top: 20px;
+      //   background-color: #ccc;
+
+      .select-audio-content-item {
+        margin-top: 20px;
+
+        .btn-group {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          padding: 30px;
+
+          button {
+            width: 100px;
+            height: 40px;
+            margin-right: 50px;
+            margin-left: 50px;
+            cursor: pointer;
+            border-radius: 10px;
+            border: none;
+            background-color: #cfe6ff;
+            color: #007bff;
+            font-size: 18px;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+              color: white;
+              background-color: #007bff;
+            }
+          }
+        }
+      }
+    }
+  }
+}

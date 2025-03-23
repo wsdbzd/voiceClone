@@ -1,0 +1,33 @@
+.audio-convert {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+
+  .audio-convert-container {
+    width: 1000px;
+    height: 600px;
+    margin: 0 auto;
+    // border: 1px solid #ccc;
+    box-shadow: 0 0 10px #ccc;
+    border-radius: 10px;
+
+    .up {
+      width: 100%;
+      height: 100px;
+    //   border: 1px solid #ccc;
+    }
+
+    .down {
+      width: 100%;
+      height: 500px;
+    //   border: 1px solid #ccc;
+        
+      .item {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}

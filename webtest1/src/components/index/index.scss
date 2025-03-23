@@ -1,0 +1,20 @@
+.index {
+  display: flex;
+  flex-direction: column; // 垂直排列
+  height: 100vh; // 让容器占满整个视口高度
+
+  .sidebar-container {
+    flex-shrink: 0; // 防止导航栏被压缩
+    width: 100%; // 导航栏宽度占满
+    background-color: #f8f9fa; // 导航栏背景色
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // 添加阴影
+  }
+
+  .content-container {
+    width: 100%;
+    flex-grow: 1; // 让内容区域占据剩余空间
+    overflow-y: auto; // 如果内容超出高度，允许滚动
+    // padding: 20px; // 添加内边距
+    background-color: #fff; // 内容区域背景色
+  }
+}

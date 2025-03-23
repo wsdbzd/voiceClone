@@ -1,0 +1,273 @@
+.canvas-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center; // 垂直居中
+  padding: 20px;
+
+  .operation {
+    width: 25%;
+    height: 100%;
+
+    .canvasAttribute {
+      width: 100%;
+      height: 30%;
+
+      .backgroundImage {
+        margin-bottom: 5px;
+
+        input::-webkit-file-upload-button {
+          font-size: 16px;
+          background-color: #cfe6ff;
+          color: #007bff;
+          border: none;
+          width: 100px;
+          height: 30px;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: white;
+            background-color: #007bff;
+          }
+        }
+      }
+
+      span {
+        display: inline-block;
+        width: 30%;
+        text-align: right;
+        margin-top: 5px;
+      }
+
+      .aspectRatio {
+        margin-bottom: 5px;
+
+        input {
+          width: 50px;
+          text-align: center;
+          height: 25px;
+          border-radius: 5px;
+          border: 1px solid #007bff;
+          font-size: 16px;
+        }
+      }
+
+      .voiceover {
+        margin-bottom: 5px;
+
+        button {
+          width: 100px;
+          height: 30px;
+          cursor: pointer;
+          border-radius: 8px;
+          border: none;
+          background-color: #cfe6ff;
+          color: #007bff;
+          transition: background-color 0.3s ease;
+          transition: color 0.3s ease;
+          font-size: 16px;
+
+          &:hover {
+            color: white;
+            background-color: #007bff;
+          }
+        }
+      }
+
+      .addElement {
+        select {
+          width: 80px;
+          height: 30px;
+          border: 1px solid #007bff;
+          border-radius: 8px;
+          font-size: 16px;
+
+          &:focus {
+            outline: none;
+          }
+        }
+        button {
+          margin-left: 10px;
+          width: 100px;
+          height: 30px;
+          cursor: pointer;
+          border-radius: 8px;
+          border: none;
+          background-color: #cfe6ff;
+          color: #007bff;
+          transition: background-color 0.3s ease;
+          transition: color 0.3s ease;
+          font-size: 16px;
+
+          &:hover {
+            color: white;
+            background-color: #007bff;
+          }
+        }
+      }
+    }
+
+    .elementAttribute {
+      width: 100%;
+      height: 60%;
+    }
+
+    .compose {
+      width: 100%;
+      height: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        width: 80%;
+        height: 80%;
+        border-radius: 10px;
+        border: none;
+        background-color: #cfe6ff;
+        color: #007bff;
+        font-size: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: white;
+          background-color: #007bff;
+        }
+      }
+    }
+  }
+
+  .canvas {
+    position: relative;
+    width: 75%;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid black;
+    border-radius: 10px;
+  }
+
+  .selectVoiceover {
+    z-index: 200;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 使弹窗居中 */
+    background-color: white;
+    height: 530px;
+
+    .header {
+
+    }
+    
+    .body {
+
+    }
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    // backdrop-filter: blur(4px); /* 模糊背景，增强聚焦效果 */
+    z-index: 100;
+  }
+}
+
+.element {
+  border-radius: 10px;
+  .content {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+
+    .image {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      background-color: white;
+      border-radius: 10px;
+    }
+
+    .text {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      textarea {
+        width: 100%;
+        height: 100%;
+        resize: none;
+        font-size: large;
+      }
+    }
+
+    .ppt {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      background-color: white;
+      border-radius: 10px;
+    }
+
+    .caption {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      border-radius: 10px;
+    }
+  }
+
+  .resize-handle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 5px;
+    height: 5px;
+    background: #333;
+    cursor: nwse-resize;
+    border-radius: 5px;
+  }
+}
+
+.element-attribute {
+    label {
+        display: block;
+        margin-top: 8px;
+        width: 100%;
+
+        span {
+            display: inline-block;
+            width: 30%;
+            text-align: right;
+        }
+
+        input {
+          height: 30px;
+          width: 100px;
+          border-radius: 8px;
+          border: 1px solid #007bff;
+          font-size: 16px;
+          padding: 0 10px;
+        
+        }
+    }
+}
