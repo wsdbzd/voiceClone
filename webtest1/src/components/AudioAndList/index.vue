@@ -49,12 +49,24 @@
                     <div class="item">
                         <div class="title">配音语速</div>
                         <div class="content">
-                            <div class="speed-box">
-                                <span>0.1x </span>
+                            <div class="box">
+                                <span>0.1x</span>
                                 <input v-model="speed" type="range" min="0.1" max="3" step="0.1" />
-                                <span> 3x</span>
+                                <span>3x</span>
                             </div>
-                            <input class="speed" v-model="speed" />
+                            <input class="input" v-model="speed" />
+                        </div>
+                    </div>
+                    
+                    <div class="item">
+                        <div class="title">配音音量</div>
+                        <div class="content">
+                            <div class="box">
+                                <span>0</span>
+                                <input v-model="volume" type="range" min="0" max="3" step="0.1" />
+                                <span>3</span>
+                            </div>
+                            <input class="input" v-model="volume" />
                         </div>
                     </div>
                 </div>
@@ -79,6 +91,7 @@ const audioStore = useAudioStore();
 
 const isFold = ref(true);
 const speed = ref(1);
+const volume = ref(1);
 
 // 监听 speed 的变化
 watch(speed, (newValue) => {

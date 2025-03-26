@@ -83,6 +83,17 @@
       <div class="overlay"></div>
     </div>
 
+    <!-- 加载动画 -->
+    <div v-if="isComposite">
+      <div class="selectVoiceover">
+        <div class="loadingHeader">
+          <div>正在制作PPT中，请稍后...</div>
+          <img :src="LoadingGif" alt="">
+        </div>
+      </div>
+      <div class="overlay"></div>
+    </div>
+
   </div>
 </template>
 
@@ -94,11 +105,13 @@ import { useCanvasStore } from "../../stores/canvas";
 import AudioAndList from "../AudioAndList/index.vue"
 import { useAudioStore } from "../../stores/audio.js";
 import { useRouter } from 'vue-router';
+import LoadingGif from './image/loading.gif'
 import './index.scss'
 
 const router = useRouter();
 const showSelectVoiceover = ref(false);
 const audioStore = useAudioStore();
+const isComposite = ref(false);
 
 // 画布元素数据格式示例
 const elements = ref([
@@ -326,7 +339,11 @@ const getElementsData = () => {
 const goToMakePPT = () => {
   canvasStore.elements = getElementsData();
   canvasStore.backgroundImgUrl = backgroundImage.value;
-  router.push('/makePPT');
+  isComposite.value = true;
+  setTimeout(() => {
+    isComposite.value = false;
+    router.push('/makePPT');
+  }, 3000);
 }
 </script>
 

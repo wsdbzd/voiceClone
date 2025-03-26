@@ -63,9 +63,24 @@
           <div>
             字数：{{ textContents[selectePPTImgIndex].content.length }} / 500
           </div>
-          <div><button>合成视频</button></div>
+          <div><button @click="compositeVideo">合成视频</button></div>
         </div>
       </div>
+    </div>
+
+    <!-- 合成视频动画以及视频播放器 -->
+    <div class="loading-video-box" v-if="compositeVideoState !== 'idle'">
+      <div class="loading-box" v-if="compositeVideoState === 'loading'">
+        <div>正在合成视频中，预计 <b>3</b> 分钟</div>
+        <img src="./video/loading.gif" alt="">
+      </div>
+
+      <div class="video-box" v-if="compositeVideoState ==='success'">
+        <div class="close" @click="compositeVideoState = 'idle'">x</div>
+        <video src="./video/compositeVideo.mp4" controls></video>
+      </div>
+
+      <div class="overlay"></div>
     </div>
   </div>
 </template>
@@ -87,6 +102,7 @@ const containerWidth = 800;
 const containerHeight = 450;
 const selectePPTImgIndex = ref(0);
 const backgroundImgUrl = canvasStore.backgroundImgUrl;
+const compositeVideoState = ref('idle'); // idle, loading, success
 
 onMounted(async () => {
   elements.value = canvasStore.elements;
@@ -135,168 +151,15 @@ const itemStyle = (item) => {
 const handleSelectPPTImage = (index) => {
   selectePPTImgIndex.value = index;
 };
+
+const compositeVideo = () => {
+  compositeVideoState.value = 'loading';
+  setTimeout(() => {
+    compositeVideoState.value ='success';
+  }, 5000);
+}
 </script>
 
 <style lang="scss" scoped>
-.ppt-container {
-  display: flex;
-  height: 100%;
 
-  /* 左侧缩略图 */
-  .thumbnails {
-    width: 340px;
-    background: #f0f0f0;
-    // padding: 10px;
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-    flex-direction: column;
-    overflow-y: auto;
-
-    &::-webkit-scrollbar {
-      width: 8px; // 滚动条宽度
-    }
-
-    &::-webkit-scrollbar-track {
-      background: white; // 滚动条背景颜色
-      /* 浅灰色背景 */
-      border-radius: 4px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: #bbb; // 滚动条滑块颜色
-      border-radius: 4px;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-      background: #888; // 鼠标悬停时颜色
-    }
-
-    .thumbnail-item {
-      margin: 0 auto;
-      width: 288px;
-      height: 162px;
-      margin-top: 15px;
-      border: 1px solid #ddd;
-      background: white;
-      position: relative;
-      border-radius: 5px;
-
-      &:hover {
-        border-color: black;
-      }
-
-      .item {
-        // border: 1px solid black;
-
-        img {
-          width: 100%;
-          height: 100%;
-        }
-
-        .item-caption {
-          font-size: 10px;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-      }
-    }
-  }
-
-  /* 右侧 PPT 画布 */
-  .preview {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f0f0f0;
-    flex-direction: column;
-
-    .canvas-box {
-      margin-top: 10px;
-      width: 800px;
-      height: 450px;
-      background: #f9f9f9;
-      position: relative;
-      // border: 1px solid #ddd;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #ddd;
-
-      .item {
-        // border: 1px solid black;
-
-        img {
-          width: 100%;
-          height: 100%;
-        }
-
-        .item-caption {
-          text-align: center;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-      }
-    }
-
-    .input-box {
-      margin-top: 10px;
-      width: 90%;
-      flex: 1;
-      background: #f9f9f9;
-      // border: 1px solid #ddd;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #ddd;
-      position: relative;
-
-      .tips {
-        display: flex;
-        align-items: center;
-        justify-content: right;
-        height: 50px;
-        border-radius: 10px;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 1;
-
-        div {
-          margin-right: 15px;
-        }
-
-        button {
-          width: 100px;
-          height: 30px;
-          border-radius: 5px;
-          border: none;
-          background-color: #cfe6ff;
-          color: #007bff;
-          font-size: medium;
-          cursor: pointer;
-          transition: all 0.2s ease-in-out;
-
-          &:hover {
-            background-color: #007bff;
-            color: white;
-          }
-        }
-      }
-
-      textarea {
-        border-radius: 10px;
-        width: 100%;
-        height: 100%;
-        padding: 10px;
-        font-size: large;
-        border: none;
-        outline: none;
-        resize: none;
-      }
-    }
-  }
-}
 </style>

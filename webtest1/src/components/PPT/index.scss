@@ -159,6 +159,17 @@
     transform: translate(-50%, -50%); /* 使弹窗居中 */
     background-color: white;
     height: 530px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .loadingHeader {
+      width: 530px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
 
     .header {
 
